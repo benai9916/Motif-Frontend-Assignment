@@ -1,0 +1,100 @@
+@import "assets/_variable.scss";
+
+.email {
+  background-color: $quick-silver;
+  padding: 42px 56px;
+  .nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    height: 20px;
+    cursor: pointer;
+    &--active {
+      border-radius: 20px;
+      border: 0.5px solid $light-grayish-blue;
+      color: $very-dark-gray;
+      padding: 4px 16px;
+      cursor: pointer;
+      background-color: $very-light-grayish-blue;
+    }
+    span {
+      font-size: 16px;
+      margin: 0 12px;
+    }
+  }
+  .email_view {
+    display: flex;
+    gap: 40px;
+    .full_screen {
+      flex-basis: 100%;
+    }
+    .split_screen_left {
+      animation: slideSmooth 0.2s ease forwards;
+      &.active {
+        background-color: red;
+      }
+    }
+    .split_screen_right {
+      background-color: white;
+      flex-basis: 60%;
+      border: 1px solid $light-grayish-blue;
+      border-radius: 10px;
+      padding: 30px;
+      display: flex;
+      gap: 30px;
+      height: fit-content;
+      & * {
+        color: $very-dark-gray;
+      }
+      .avatar {
+        background-color: $pink-red;
+        height: 60px;
+        max-width: 60px;
+        border-radius: 99px;
+        flex-basis: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 26px;
+          font-weight: bold;
+          color: white;
+        }
+      }
+      .main_body_content {
+        flex-basis: calc(100% - 70px);
+        position: relative;
+        .subject {
+          height: 24px;
+          margin: 0;
+          width: 80%;
+          display: inline-block;
+        }
+        button {
+          position: absolute;
+          height: 30px;
+          background-color: $pink-red;
+          border: none;
+          border-radius: 20px;
+          padding: 0 14px;
+          color: white;
+          cursor: pointer;
+          right: 0;
+          top: 0;
+        }
+        .datetime {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideSmooth {
+  0% {
+    flex-basis: 100%;
+  }
+  100% {
+    flex-basis: 40%;
+  }
+}

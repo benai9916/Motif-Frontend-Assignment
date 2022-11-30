@@ -1,0 +1,56 @@
+@import 'assets/_variable.scss';
+
+.email_box {
+  min-height: 110px;
+  display: flex;
+  gap: 24px;
+  border: 1px solid $light-grayish-blue;
+  border-radius: 10px;
+  padding: 16px 30px;
+  margin-bottom: 24px;
+  background-color: white;
+  cursor: pointer;
+  &.active_box {
+    border-color: $pink-red;
+  }
+  &.read_bg {
+    background-color: $very-light-gray;
+  }
+ 
+  .avatar {
+    background-color: $pink-red;
+    height: 60px;
+    max-width: 60px;
+    border-radius: 99px;
+    flex-basis: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+    }
+  }
+  .content {
+    flex-basis: calc(100% - 70px);
+    p {
+      margin-bottom: 8px;
+    }
+    p, span{
+      font-size: 16px;
+      color: $very-dark-gray;
+    }
+    .title {
+      margin-bottom: 14px;
+    }
+    .text {
+      font-weight: bold;
+      color: $very-dark-gray;
+    }
+    .favourite {
+      color: $pink-red;
+      margin-left: 30px;
+    }
+  }
+}
