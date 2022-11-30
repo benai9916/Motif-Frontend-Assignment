@@ -1,6 +1,5 @@
 @import "assets/_variable.scss";
 
-
 .email {
   background-color: $quick-silver;
   padding: 42px 56px;
@@ -21,6 +20,16 @@
     span {
       font-size: 16px;
       margin: 0 12px;
+    }
+    .search {
+      input {
+        margin-left: 20px;
+        border-radius: 6px;
+        height: 28px;
+        border: 0.5px solid $light-grayish-blue;
+        padding: 3px 10px;
+        width: 200px;
+      }
     }
   }
   .email_view {
