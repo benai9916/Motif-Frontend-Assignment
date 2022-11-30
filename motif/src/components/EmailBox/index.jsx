@@ -9,7 +9,6 @@ const EmailBox = ({
   activeEmailContent,
   listOfReadEmail,
 }) => {
-  console.log(listOfReadEmail);
   const activeEmail = emails?.id === activeEmailContent?.id;
   const avatarLetter = emails?.from_name?.charAt(0).toUpperCase();
   let isFavourite = savedFav?.includes(emails?.id);
