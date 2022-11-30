@@ -15,6 +15,7 @@ const Email = () => {
   const [filterType, setFilterType] = useState("");
   const [listOfReadEmail, setListOfReadEmail] = useState([]);
   const [search, setSearch] = useState(undefined);
+  const [isError, setError] = useState(false);
 
   useEffect(() => {
     ApiService.getEmailList()
@@ -23,6 +24,7 @@ const Email = () => {
         setFilterEmailList(res);
       })
       .catch((err) => {
+        setError(true);
         console.log(err);
       });
     setSaveFav(JSON.parse(localStorage.getItem("favorits")));
@@ -53,6 +55,7 @@ const Email = () => {
           setEmailBody(res);
         })
         .catch((err) => {
+          setError(true);
           console.log(err);
         });
     }
@@ -127,7 +130,6 @@ const Email = () => {
     return () => clearTimeout(time);
   };
 
-  console.log(search);
   return (
     <section className="email">
       <div className="nav">
@@ -165,38 +167,44 @@ const Email = () => {
           />
         </div>
       </div>
-      {emailList && (
-        <div className="email_view">
-          <div className={emailBody ? "split_screen_left" : "full_screen"}>
-            {filterEmailList.map((emails, id) => (
-              <EmailBox
-                emails={emails}
-                key={id}
-                handleEmailBody={handleEmailBody}
-                activeEmailContent={activeEmailContent}
-                savedFav={savedFav}
-                listOfReadEmail={listOfReadEmail}
-              />
-            ))}
-          </div>
-          {emailBody && (
-            <div className="split_screen_right">
-              <div className="avatar">
-                <span>
-                  {activeEmailContent?.from_name?.charAt(0).toUpperCase()}
-                </span>
+      {!isError ? (
+        <>
+          {emailList && (
+            <div className="email_view">
+              <div className={emailBody ? "split_screen_left" : "full_screen"}>
+                {filterEmailList.map((emails, id) => (
+                  <EmailBox
+                    emails={emails}
+                    key={id}
+                    handleEmailBody={handleEmailBody}
+                    activeEmailContent={activeEmailContent}
+                    savedFav={savedFav}
+                    listOfReadEmail={listOfReadEmail}
+                  />
+                ))}
               </div>
-              <div className="main_body_content">
-                <h2 className="subject">{activeEmailContent?.subject}</h2>
-                <p className="datetime">{getDate()}</p>
-                <button onClick={handleFavourite}>Mark as Favorits</button>
-                <div
-                  dangerouslySetInnerHTML={{ __html: emailBody?.body }}
-                ></div>
-              </div>
+              {emailBody && (
+                <div className="split_screen_right">
+                  <div className="avatar">
+                    <span>
+                      {activeEmailContent?.from_name?.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="main_body_content">
+                    <h2 className="subject">{activeEmailContent?.subject}</h2>
+                    <p className="datetime">{getDate()}</p>
+                    <button onClick={handleFavourite}>Mark as Favorits</button>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: emailBody?.body }}
+                    ></div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
-        </div>
+        </>
+      ) : (
+        <h2>Something went wrong</h2>
       )}
     </section>
   );
