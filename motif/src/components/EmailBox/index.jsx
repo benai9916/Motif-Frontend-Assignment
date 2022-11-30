@@ -9,14 +9,16 @@ const EmailBox = ({
   activeEmailContent,
   listOfReadEmail,
 }) => {
-  console.log(listOfReadEmail)
+  console.log(listOfReadEmail);
   const activeEmail = emails?.id === activeEmailContent?.id;
   const avatarLetter = emails?.from_name?.charAt(0).toUpperCase();
-  let isFavourite =  savedFav?.includes(emails?.id)
-  let isEmailRead = listOfReadEmail.includes(emails?.id)
+  let isFavourite = savedFav?.includes(emails?.id);
+  let isEmailRead = listOfReadEmail?.includes(emails?.id);
   return (
     <div
-      className={`${activeEmail ? "active_box" : null} ${isEmailRead ? 'read_bg' : null} email_box`}
+      className={`${activeEmail ? "active_box" : null} ${
+        isEmailRead ? "read_bg" : null
+      } email_box`}
       onClick={() => handleEmailBody(emails)}
     >
       <div className="avatar">
@@ -32,7 +34,7 @@ const EmailBox = ({
         </p>
         <p>{emails?.short_description}</p>
         <span>{getDate()}</span>
-        {isFavourite &&  <span className="favourite">Favourite</span>}
+        {isFavourite && <span className="favourite">Favourite</span>}
       </div>
     </div>
   );

@@ -24,10 +24,21 @@ const Email = () => {
       .catch((err) => {
         console.log(err);
       });
-    let fav = JSON.parse(localStorage.getItem("favorits"));
-    setSaveFav(fav);
-    setListOfReadEmail(fav);
+    setSaveFav(JSON.parse(localStorage.getItem("favorits")));
+    setListOfReadEmail(JSON.parse(localStorage.getItem("read")));
   }, []);
+
+  const presistReadEmail = (readEmailId) => {
+    let read = JSON.parse(localStorage.getItem("read"));
+    if (read) {
+      read = [...read, readEmailId];
+      setListOfReadEmail(read);
+    } else {
+      read = [readEmailId];
+      setListOfReadEmail(read);
+    }
+    localStorage.setItem("read", JSON.stringify(read));
+  };
 
   const handleEmailBody = (emails) => {
     if (emails?.id === activeEmailContent?.id) {
@@ -35,7 +46,7 @@ const Email = () => {
       setEmailBody(undefined);
     } else {
       setActiveEmailContent(emails);
-      setListOfReadEmail((prev) => [...prev, emails?.id]);
+      presistReadEmail(emails?.id);
       ApiService.getEmailBody(emails?.id)
         .then((res) => {
           setEmailBody(res);
