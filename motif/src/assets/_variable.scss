@@ -6,3 +6,14 @@ $very-dark-gray: #636363;
 $light-grayish-blue: #CFD2DC;
 $very-light-grayish-blue: #E1E4EA;
 $very-light-gray: #f2f2f2;
+
+@mixin avatarStyle {
+  background-color: $pink-red;
+  height: 60px;
+  max-width: 60px;
+  border-radius: 99px;
+  flex-basis: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

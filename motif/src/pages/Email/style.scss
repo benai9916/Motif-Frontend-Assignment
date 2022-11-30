@@ -1,5 +1,6 @@
 @import "assets/_variable.scss";
 
+
 .email {
   background-color: $quick-silver;
   padding: 42px 56px;
@@ -47,14 +48,7 @@
         color: $very-dark-gray;
       }
       .avatar {
-        background-color: $pink-red;
-        height: 60px;
-        max-width: 60px;
-        border-radius: 99px;
-        flex-basis: 70px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include avatarStyle();
         span {
           font-size: 26px;
           font-weight: bold;
