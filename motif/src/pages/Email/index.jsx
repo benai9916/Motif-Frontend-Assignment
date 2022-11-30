@@ -14,6 +14,7 @@ const Email = () => {
   const [savedFav, setSaveFav] = useState(undefined);
   const [filterType, setFilterType] = useState("");
   const [listOfReadEmail, setListOfReadEmail] = useState([]);
+  const [search, setSearch] = useState(undefined)
 
   useEffect(() => {
     ApiService.getEmailList()
@@ -107,6 +108,22 @@ const Email = () => {
     }
   };
 
+  useEffect(() => {
+    if(search?.length > 2) {
+      setFilterEmailList(emailList.filter((item) => {
+      return Object.values(item).join(' ').toLowerCase().includes(search)
+    }))
+  }
+  }, [search])
+
+  const handleSearch =(e)=> {
+    let time = setTimeout(() => {
+      setSearch(e.target.value)
+    }, 100);
+    return () => clearTimeout(time)
+  }
+
+  console.log(search)
   return (
     <section className="email">
       <div className="nav">
@@ -135,6 +152,9 @@ const Email = () => {
         >
           All
         </span>
+        <div>
+          <input type="text" name="search" onChange={handleSearch} placeholder="search"/>
+        </div>
       </div>
       {emailList && (
         <div className="email_view">
