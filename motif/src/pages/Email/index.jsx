@@ -86,7 +86,7 @@ const Email = () => {
       if (filterEmailList) {
         setFilterEmailList(
           emailList.filter((item) => {
-            return favorits.includes(item?.id);
+            return favorits?.includes(item?.id);
           })
         );
       }
@@ -94,7 +94,7 @@ const Email = () => {
       setFilterEmailList(
         emailList.filter((item) => {
           return (
-            listOfReadEmail.includes(item?.id) || favorits.includes(item?.id)
+            listOfReadEmail?.includes(item?.id) || favorits?.includes(item?.id)
           );
         })
       );
@@ -102,7 +102,7 @@ const Email = () => {
       setFilterEmailList(
         emailList.filter((item) => {
           return (
-            !listOfReadEmail.includes(item?.id) && !favorits.includes(item?.id)
+            !listOfReadEmail?.includes(item?.id) && !favorits?.includes(item?.id)
           );
         })
       );
@@ -115,7 +115,7 @@ const Email = () => {
     if (search?.length > 2) {
       setFilterEmailList(
         emailList.filter((item) => {
-          return Object.values(item).join(" ").toLowerCase().includes(search);
+          return Object.values(item).join(" ").toLowerCase()?.includes(search);
         })
       );
     } else {
